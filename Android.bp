@@ -43,3 +43,37 @@ cc_binary_host {
         "-DSYSCONFDIR=\"/tmp\"",
     ],
 }
+
+cc_library_shared {
+    clang: true,
+    srcs: [
+        "libkmod/libkmod.c",
+        "libkmod/libkmod-file.c",
+        "libkmod/libkmod-module.c",
+        "libkmod/libkmod-config.c",
+        "libkmod/libkmod-index.c",
+        "libkmod/libkmod-elf.c",
+        "libkmod/libkmod-list.c",
+        "libkmod/libkmod-signature.c",
+        "shared/array.c",
+        "shared/scratchbuf.c",
+        "shared/util.c",
+        "shared/hash.c",
+        "shared/strbuf.c",
+    ],
+
+    name: "libkmod",
+    local_include_dirs: ["port-gnu"],
+    cflags: [
+        "-include config_android.h",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Wall",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-Dsecure_getenv=getenv",
+        "-DHAVE_CONFIG_H",
+        "-DANOTHER_BRICK_IN_THE",
+        "-DSYSCONFDIR=\"/tmp\"",
+    ],
+}
